@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -oE '#[0-9A-Fa-f]{3,8}' E:/gemmas-portfolio/src/app/GemmaS/GemmasGDark.svg E:/gemmas-portfolio/src/app/GemmaS/GemmasGLight.svg E:/gemmas-portfolio/src/app/GemmaS/GemmasGDarkBGNone.svg)"
+    ]
+  }
+}
