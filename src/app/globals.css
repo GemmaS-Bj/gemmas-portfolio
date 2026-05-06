@@ -207,9 +207,6 @@ body {
    ======================================================================== */
 .theme-toggle {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 40px;
   height: 40px;
   border: none;
@@ -371,7 +368,7 @@ body {
   .nav-pill-container {
     width: calc(100% - 64px) !important;
     left: 52px !important;
-    grid-template-columns: auto 1fr auto !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
   }
 
   /* Tab and notch adjustment */

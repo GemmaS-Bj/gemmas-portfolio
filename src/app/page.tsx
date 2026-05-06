@@ -264,48 +264,71 @@ export default function Home() {
           }}
         >
           {/* Logo — col 1 */}
-          <Image
-            src={theme === "dark" ? "/GemmasGDark.svg" : "/GemmasGLight.svg"}
-            alt="GemmaS"
-            width={LOGO_H}
-            height={LOGO_H}
-            priority
-            style={{
-              width: LOGO_H,
-              height: LOGO_H,
-              transformOrigin: "center",
-              animation: "logo-3d-intro 1.4s cubic-bezier(0.22, 1, 0.36, 1) backwards",
-              animationDelay: D_LOGO,
-            }}
-          />
+          <div className="flex items-center justify-start">
+            <Image
+              src={theme === "dark" ? "/GemmasGDark.svg" : "/GemmasGLight.svg"}
+              alt="GemmaS"
+              width={LOGO_H}
+              height={LOGO_H}
+              priority
+              style={{
+                width: LOGO_H,
+                height: LOGO_H,
+                transformOrigin: "center",
+                animation: "logo-3d-intro 1.4s cubic-bezier(0.22, 1, 0.36, 1) backwards",
+                animationDelay: D_LOGO,
+              }}
+            />
+          </div>
 
-          {/* Desktop nav links — col 2, centered, liquid glass hover */}
-          <nav
-            className="desktop-nav"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 16,
-              animation: "fade-in 0.6s ease-out backwards",
-              animationDelay: D_LINKS,
-            }}
-          >
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="liquid-link text-sm"
-              >
-                <span className="liquid-shadow" aria-hidden="true" />
-                <span className="liquid-backdrop" aria-hidden="true" />
-                <span className="liquid-label">{link.label}</span>
-              </a>
-            ))}
-          </nav>
+          {/* Desktop nav links / Mobile Theme Toggle — col 2 */}
+          <div className="flex items-center justify-center">
+            <nav
+              className="desktop-nav"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 16,
+                animation: "fade-in 0.6s ease-out backwards",
+                animationDelay: D_LINKS,
+              }}
+            >
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="liquid-link text-sm"
+                >
+                  <span className="liquid-shadow" aria-hidden="true" />
+                  <span className="liquid-backdrop" aria-hidden="true" />
+                  <span className="liquid-label">{link.label}</span>
+                </a>
+              ))}
+            </nav>
 
-          {/* Hamburger button — mobile only (col 2 right-aligned) */}
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            {/* Mobile-only Theme Toggle */}
+            <button
+              className="theme-toggle flex md:hidden items-center justify-center"
+              onClick={toggleTheme}
+              aria-label={theme === "light" ? "Activer le thème sombre" : "Activer le thème clair"}
+              style={{
+                animation: "pop-in 0.6s ease-out backwards",
+                animationDelay: D_TAB,
+              }}
+            >
+              <span className="liquid-shadow" aria-hidden="true" />
+              <span className="liquid-backdrop" aria-hidden="true" />
+              {theme === "light" ? (
+                <MoonIcon className="theme-toggle-icon" />
+              ) : (
+                <SunIcon className="theme-toggle-icon" />
+              )}
+            </button>
+          </div>
+
+          {/* Hamburger button / Desktop Spacer — col 3 */}
+          <div className="flex items-center justify-end">
             <button
               className={`hamburger-btn ${menuOpen ? "open" : ""}`}
               onClick={toggleMenu}
@@ -316,15 +339,13 @@ export default function Home() {
               <span className="hamburger-line" />
               <span className="hamburger-line" />
             </button>
+            <div className="hidden md:block" style={{ width: LOGO_H }} aria-hidden="true" />
           </div>
-
-          {/* Spacer col 3 — same width as logo for true centering on desktop */}
-          <div className="hidden md:block" style={{ width: LOGO_H }} aria-hidden="true" />
         </div>
 
         {/* THEME TOGGLE — positioned in the white space to the right of the navbar pill */}
         <button
-          className="theme-toggle"
+          className="theme-toggle hidden md:flex items-center justify-center"
           onClick={toggleTheme}
           aria-label={theme === "light" ? "Activer le thème sombre" : "Activer le thème clair"}
           style={{
