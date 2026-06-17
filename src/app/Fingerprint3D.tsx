@@ -68,7 +68,7 @@ export default function Fingerprint3D({ size, style, className }: Props) {
         }}
       >
         <Image
-          src="/Fingerprint.svg"
+          src="/icons/Fingerprint.svg"
           alt=""
           width={size}
           height={size}
