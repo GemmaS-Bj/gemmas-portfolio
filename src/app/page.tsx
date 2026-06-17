@@ -266,7 +266,7 @@ export default function Home() {
           {/* Logo — col 1 */}
           <div className="flex items-center justify-start">
             <Image
-              src={theme === "dark" ? "/GemmasGDark.svg" : "/GemmasGLight.svg"}
+              src={theme === "dark" ? "/icons/GemmasGDark.svg" : "/icons/GemmasGLight.svg"}
               alt="GemmaS"
               width={LOGO_H}
               height={LOGO_H}
@@ -384,7 +384,7 @@ export default function Home() {
         }}
       >
         <Image
-          src={theme === "dark" ? "/GemmasGDark.svg" : "/GemmasGLight.svg"}
+          src={theme === "dark" ? "/icons/GemmasGDark.svg" : "/icons/GemmasGLight.svg"}
           alt=""
           aria-hidden="true"
           width={FOOTER_LOGO_SIZE}

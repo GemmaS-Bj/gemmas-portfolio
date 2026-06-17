@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const spotifyMix = localFont({
-  src: "./fonts/SpotifyMix-Medium.woff",
+  src: "../fonts/SpotifyMix-Medium.woff",
   variable: "--font-spotify-mix",
   display: "swap",
   weight: "500",
