@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Geist_Mono, Work_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -8,6 +8,11 @@ const spotifyMix = localFont({
   variable: "--font-spotify-mix",
   display: "swap",
   weight: "500",
+});
+
+const workSans = Work_Sans({
+  variable: "--font-work-sans",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
@@ -28,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${spotifyMix.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${spotifyMix.variable} ${workSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
