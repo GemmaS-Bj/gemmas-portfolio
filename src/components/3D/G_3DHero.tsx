@@ -2,7 +2,7 @@
 
 import { RootState, useFrame } from "@react-three/fiber"
 import { Canvas } from "@react-three/fiber"
-import { useRef } from "react"
+import { ComponentPropsWithRef, useRef } from "react"
 import { ACESFilmicToneMapping, Light, SRGBColorSpace } from "three"
 import { GHeroModel } from "./GHeroModel"
 
@@ -56,7 +56,12 @@ function LightWithHelper() {
   )
 }
 
-export const G_3DHero = () => {
+interface G3DHeroProps extends ComponentPropsWithRef<"canvas"> {
+  width?: string;
+  height?: string;
+}
+
+export const G_3DHero = ({width = "100vw", height = "100vh"}: G3DHeroProps) => {
   return (
     <Canvas
       shadows
@@ -67,13 +72,13 @@ export const G_3DHero = () => {
         toneMappingExposure: 1.0,
         outputColorSpace: SRGBColorSpace,
       }}
-      style={{ width: "100vw", height: "100vh" }}
+      style={{ width, height }}
     >
       <ambientLight intensity={0.15} />
       <AnimatedLight />
       <LightWithHelper />
       <mesh position={[0, 0, PLANE_Z]} receiveShadow>
-        <planeGeometry args={[20, 20]} />
+        <planeGeometry args={[200, 20]} />
         <meshStandardMaterial color="#ffffff" />
       </mesh>
       <GHeroModel position={[0, 0, PLANE_Z]} scale={0.5} />

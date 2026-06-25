@@ -1,7 +1,7 @@
-import { G_3DHero } from "@/components/3D/G_3DHero"
+import { Hero } from "@/app/_components/sections/Hero"
 
 export default function Page() {
   return (
-    <G_3DHero />
+    <Hero />
   )
 }

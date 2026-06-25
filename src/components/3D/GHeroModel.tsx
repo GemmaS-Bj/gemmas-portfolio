@@ -50,7 +50,7 @@ export function GHeroModel(props: ThreeElements['group']) {
       child.geometry.computeVertexNormals()
       if (child.material instanceof MeshStandardMaterial) {
         child.material.flatShading = false
-        child.material.roughness = 0.55
+        child.material.roughness = 2
         child.material.metalness = 0.1
         child.material.needsUpdate = true
       }
@@ -71,10 +71,10 @@ export function GHeroModel(props: ThreeElements['group']) {
   useFrame((_, delta) => {
     if (!cylinder4Ref.current) return
     const mat = cylinder4Ref.current.material as MeshStandardMaterial
-    const t = delta * 5
+    const t = delta * 8
     const isHovered = hovered.current
     mat.color.lerp(isHovered ? HOVER_COLOR : originalColor.current, t)
-    mat.roughness += ((isHovered ? 0.7 : originalRoughness.current) - mat.roughness) * t
+    mat.roughness += ((isHovered ? 0.8 : originalRoughness.current) - mat.roughness) * t
     mat.metalness += ((isHovered ? 0.5  : originalMetalness.current) - mat.metalness) * t
   })
 
