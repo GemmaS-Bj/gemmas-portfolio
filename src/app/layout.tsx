@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GemmaS — Studio dev",
-  description: "Petite équipe, technos modernes, résultats concrets.",
+  title: "GemmaS",
+  description: "Agence de développement de logiciels, technologies modernes, résultats concrets.",
 };
 
 export default function RootLayout({
