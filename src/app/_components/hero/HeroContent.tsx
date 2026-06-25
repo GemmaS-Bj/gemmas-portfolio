@@ -7,9 +7,9 @@ import { ComponentPropsWithRef } from 'react';
 interface HeroProps extends ComponentPropsWithRef<"div">{
 }
 
-export const Hero = ({...props}: HeroProps) => {
+export const HeroContent = ({...props}: HeroProps) => {
     return (<>
-        <div className={cn("mt-40 ml-[10%] w-[40%] z-1 text-[24px]")}>
+        <div className={cn("mt-40 ml-[10%] w-[40%] z-10 text-[24px]")}>
             <h1 className="text-[64px] font-bold tracking-wider mb-20">Your Vision, Built With Technology That Performs</h1>
             {/* <h1 className="text-[64px] font-bold tracking-wide">Built With Technology That Performs</h1> */}
             <div className="flex gap-5">

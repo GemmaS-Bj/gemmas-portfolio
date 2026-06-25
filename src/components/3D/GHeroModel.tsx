@@ -37,9 +37,26 @@ export function GHeroModel(props: ThreeElements['group']) {
   const groupRef = useRef<Group>(null)
   const cylinder4Ref = useRef<Mesh>(null)
   const hovered = useRef(false)
+  const mobileActive = useRef(false)
+  const isMobile = useRef(false)
+  const modelWasClicked = useRef(false)
   const originalColor = useRef(new Color())
   const originalRoughness = useRef(1)
   const originalMetalness = useRef(0)
+
+  useEffect(() => {
+    isMobile.current = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+  }, [])
+
+  useEffect(() => {
+    const deactivateOnMiss = () => {
+      if (!isMobile.current) return
+      if (modelWasClicked.current) { modelWasClicked.current = false; return }
+      mobileActive.current = false
+    }
+    document.addEventListener('pointerdown', deactivateOnMiss)
+    return () => document.removeEventListener('pointerdown', deactivateOnMiss)
+  }, [])
 
   // Smooth normals sur tous les meshes
   useEffect(() => {
@@ -72,10 +89,10 @@ export function GHeroModel(props: ThreeElements['group']) {
     if (!cylinder4Ref.current) return
     const mat = cylinder4Ref.current.material as MeshStandardMaterial
     const t = delta * 8
-    const isHovered = hovered.current
-    mat.color.lerp(isHovered ? HOVER_COLOR : originalColor.current, t)
-    mat.roughness += ((isHovered ? 0.8 : originalRoughness.current) - mat.roughness) * t
-    mat.metalness += ((isHovered ? 0.5  : originalMetalness.current) - mat.metalness) * t
+    const isActive = hovered.current || mobileActive.current
+    mat.color.lerp(isActive ? HOVER_COLOR : originalColor.current, t)
+    mat.roughness += ((isActive ? 0.8 : originalRoughness.current) - mat.roughness) * t
+    mat.metalness += ((isActive ? 0.5  : originalMetalness.current) - mat.metalness) * t
   })
 
   return (
@@ -84,6 +101,11 @@ export function GHeroModel(props: ThreeElements['group']) {
       dispose={null}
       onPointerEnter={() => { hovered.current = true; document.body.style.cursor = 'pointer' }}
       onPointerLeave={() => { hovered.current = false; document.body.style.cursor = 'auto' }}
+      onClick={() => {
+        if (!isMobile.current) return
+        mobileActive.current = true
+        modelWasClicked.current = true
+      }}
       {...props}
     >
       <mesh geometry={nodes.GBar.geometry}      material={materials.GreenColor} position={[1.285, -0.144, 1]} rotation={[Math.PI / 2, 0, 0]} scale={0.01} />

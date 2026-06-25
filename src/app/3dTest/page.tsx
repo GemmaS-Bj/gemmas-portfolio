@@ -1,7 +1,7 @@
-import { Hero } from "@/app/_components/sections/Hero"
+import { HeroContent } from "@/app/_components/hero/HeroContent"
 
 export default function Page() {
   return (
-    <Hero />
+    <HeroContent />
   )
 }
