@@ -1,6 +1,5 @@
 "use client"
 
-import { ContactShadows } from "@react-three/drei"
 import { RootState, useFrame } from "@react-three/fiber"
 import { Canvas } from "@react-three/fiber"
 import { ComponentPropsWithRef, useRef } from "react"
@@ -43,7 +42,7 @@ function LightWithHelper() {
       position={[-20, 2, 10]}
       color="white"
       ref={lightRef}
-      // castShadow
+      castShadow
       shadow-mapSize-width={4096}
       shadow-mapSize-height={4096}
       shadow-camera-near={0.1}
@@ -82,15 +81,7 @@ export const G_3DHero = ({width = "100vw", height = "100vh"}: G3DHeroProps) => {
         <planeGeometry args={[200, 20]} />
         <meshStandardMaterial color="#ffffff" />
       </mesh>
-      <GHeroModel position={[0, 0, 0]} scale={0.5} />
-      <ContactShadows
-        position={[0, -0.75, 0]}
-        opacity={0.5}
-        blur={3}
-        far={2}
-        width={3}
-        height={3}
-      />
+      <GHeroModel position={[0, 0, PLANE_Z]} scale={0.5} />
     </Canvas>
   )
 }
